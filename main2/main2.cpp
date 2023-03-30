@@ -5,16 +5,13 @@ class Circle
 {
 protected:
 	double circleR;
-	double circleS;
-	double circleP;
-	double circleD;
 public:
 	Circle();
 	Circle(double r);
 
-	double CircleSquare();
-	double CirclePerimeter();
-	double CircleDiameter();
+	double CircleSquare() const;
+	double CirclePerimeter() const;
+	double CircleDiameter() const;
 
 	void CircleOutput();
 
@@ -24,9 +21,6 @@ public:
 Circle::Circle()
 {
 	circleR = 0;
-	circleS = 0;
-	circleP = 0;
-	circleD = 0;
 }
 
 Circle::Circle(double r)
@@ -34,35 +28,26 @@ Circle::Circle(double r)
 	if (r > 0)
 	{
 		circleR = r;
-		circleD = CircleDiameter();
-		circleP = CirclePerimeter();
-		circleS = CircleSquare();
 	}
 	else
 	{
 		circleR = 0;
-		circleS = 0;
-		circleP = 0;
-		circleD = 0;
 	}
 }
 
-double Circle::CircleSquare()
+double Circle::CircleSquare() const
 {
-	circleS = 3.14 * circleR * circleR;
-	return circleS;
+	return 3.14 * circleR * circleR;
 }
 
-double Circle::CirclePerimeter()
+double Circle::CirclePerimeter() const
 {
-	circleP = 2 * 3.14 * circleR;
-	return circleP;
+	return 2 * 3.14 * circleR;
 }
 
-double Circle::CircleDiameter()
+double Circle::CircleDiameter() const
 {
-	circleD = circleR * 2;
-	return circleD;
+	return circleR * 2;
 }
 
 void Circle::CircleOutput()
@@ -74,9 +59,9 @@ ostream& operator<<(ostream& o, const Circle& cr)
 {
 	o << "-Circle-" << "\n"
 		<< "Radius: " << cr.circleR << "\n"
-		<< "Diameter: " << cr.circleD << "\n"
-		<< "Perimeter: " << cr.circleP << "\n"
-		<< "Square: " << cr.circleS << "\n";
+		<< "Diameter: " << cr.CircleDiameter() << "\n"
+		<< "Perimeter: " << cr.CirclePerimeter() << "\n"
+		<< "Square: " << cr.CircleSquare() << "\n";
 	return o;
 }
 
@@ -84,16 +69,13 @@ class Quadrate
 {
 protected:
 	double quadrateSide;
-	double quadrateDiagonal;
-	double quadrateS;
-	double quadrateP;
 public:
 	Quadrate();
 	Quadrate(double side);
 
-	double QuadrateSquare();
-	double QuadratePerimeter();
-	double QuadrateDiagonal();
+	double QuadrateSquare() const;
+	double QuadratePerimeter() const;
+	double QuadrateDiagonal() const;
 
 	void QuadrateOutput();
 
@@ -103,9 +85,6 @@ public:
 Quadrate::Quadrate()
 {
 	quadrateSide = 0;
-	quadrateDiagonal = 0;
-	quadrateS = 0;
-	quadrateP = 0;
 }
 
 Quadrate::Quadrate(double side)
@@ -113,35 +92,26 @@ Quadrate::Quadrate(double side)
 	if (side > 0)
 	{
 		quadrateSide = side;
-		quadrateDiagonal = QuadrateDiagonal();
-		quadrateP = QuadratePerimeter();
-		quadrateS = QuadrateSquare();
 	}
 	else
 	{
 		quadrateSide = 0;
-		quadrateDiagonal = 0;
-		quadrateS = 0;
-		quadrateP = 0;
 	}
 }
 
-double Quadrate::QuadrateSquare()
+double Quadrate::QuadrateSquare() const
 {
-	quadrateS = quadrateSide * quadrateSide;
-	return quadrateS;
+	return quadrateSide * quadrateSide;
 }
 
-double Quadrate::QuadratePerimeter()
+double Quadrate::QuadratePerimeter() const
 {
-	quadrateP = quadrateSide * 4;
-	return quadrateP;
+	return quadrateSide * 4;
 }
 
-double Quadrate::QuadrateDiagonal()
+double Quadrate::QuadrateDiagonal() const
 {
-	quadrateDiagonal = quadrateSide * sqrt(2);
-	return quadrateDiagonal;
+	return quadrateSide * sqrt(2);
 }
 
 void Quadrate::QuadrateOutput()
@@ -153,9 +123,9 @@ ostream& operator<<(ostream& o, const Quadrate& qd)
 {
 	o << "-Quadrate-" << "\n"
 		<< "Side: " << qd.quadrateSide << "\n"
-		<< "Diagonal: " << qd.quadrateDiagonal << "\n"
-		<< "Perimeter: " << qd.quadrateP << "\n"
-		<< "Square: " << qd.quadrateS << "\n";
+		<< "Diagonal: " << qd.QuadrateDiagonal() << "\n"
+		<< "Perimeter: " << qd.QuadratePerimeter() << "\n"
+		<< "Square: " << qd.QuadrateSquare() << "\n";
 	return o;
 }
 

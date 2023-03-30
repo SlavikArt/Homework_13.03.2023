@@ -5,8 +5,6 @@ class BaseFigure
 {
 protected:
 	double baseSide;
-	double S;
-	double P;
 public:
 	BaseFigure();
 	void Output();
@@ -15,16 +13,12 @@ public:
 BaseFigure::BaseFigure()
 {
 	baseSide = 0;
-	S = 0;
-	P = 0;
 }
 
 void BaseFigure::Output()
 {
 	cout << "-BaseFigure-" << "\n"
-		<< "Base Side: " << baseSide << "\n"
-		<< "Square: " << S << "\n"
-		<< "Perimeter: " << P << "\n";
+		<< "Base Side: " << baseSide << "\n";
 }
 
 class Triangle : public BaseFigure
@@ -37,8 +31,8 @@ public:
 	Triangle();
 	Triangle(double base, double A, double B);
 
-	double Square();
-	double Perimeter();
+	double Square() const;
+	double Perimeter() const;
 
 	void Output();
 
@@ -54,16 +48,12 @@ void Triangle::Initialize(double base, double A, double B)
 		sideA = A;
 		sideB = B;
 		baseSide = base;
-		P = Perimeter();
-		S = Square();
 	}
 	else
 	{
 		sideA = 0;
 		sideB = 0;
 		baseSide = 0;
-		S = 0;
-		P = 0;
 	}
 }
 
@@ -78,17 +68,15 @@ Triangle::Triangle(double base, double A, double B)
 	Initialize(base, A, B);
 }
 
-double Triangle::Square()
+double Triangle::Square() const
 {
-	double p = P / 2;
-	S = sqrt(p * (p - sideA) * (p - sideB) * (p - baseSide));
-	return S;
+	double p = Perimeter() / 2;
+	return sqrt(p * (p - sideA) * (p - sideB) * (p - baseSide));
 }
 
-double Triangle::Perimeter()
+double Triangle::Perimeter() const
 {
-	P = sideA + sideB + baseSide;
-	return P;
+	return sideA + sideB + baseSide;
 }
 
 void Triangle::Output()
@@ -118,8 +106,8 @@ ostream& operator<<(ostream& o, const Triangle& tr)
 		<< "Side A: " << tr.sideA << "\n"
 		<< "Side B: " << tr.sideB << "\n"
 		<< "Side C: " << tr.baseSide << "\n"
-		<< "Perimeter: " << tr.P << "\n"
-		<< "Square: " << tr.S << "\n";
+		<< "Perimeter: " << tr.Perimeter() << "\n"
+		<< "Square: " << tr.Square() << "\n";
 	return o;
 }
 
@@ -130,8 +118,8 @@ public:
 	Quadrate();
 	Quadrate(double base);
 
-	double Square();
-	double Perimeter();
+	double Square() const;
+	double Perimeter() const;
 
 	void Output();
 
@@ -144,14 +132,10 @@ void Quadrate::Initialize(double base)
 	if (base > 0)
 	{
 		baseSide = base;
-		P = Perimeter();
-		S = Square();
 	}
 	else
 	{
 		baseSide = 0;
-		P = 0;
-		S = 0;
 	}
 }
 
@@ -164,16 +148,14 @@ Quadrate::Quadrate(double base)
 	Initialize(base);
 }
 
-double Quadrate::Square()
+double Quadrate::Square() const
 {
-	S = baseSide * baseSide;
-	return S;
+	return baseSide * baseSide;
 }
 
-double Quadrate::Perimeter()
+double Quadrate::Perimeter() const
 {
-	P = baseSide * 4;
-	return P;
+	return baseSide * 4;
 }
 
 void Quadrate::Output()
@@ -195,8 +177,8 @@ ostream& operator<<(ostream& o, const Quadrate& qd)
 {
 	o << "-Quadrate-" << "\n"
 		<< "Side A: " << qd.baseSide << "\n"
-		<< "Perimeter: " << qd.P << "\n"
-		<< "Square: " << qd.S << "\n";
+		<< "Perimeter: " << qd.Perimeter() << "\n"
+		<< "Square: " << qd.Square() << "\n";
 	return o;
 }
 
@@ -209,8 +191,8 @@ public:
 	Rectangle();
 	Rectangle(double A, double B);
 
-	double Square();
-	double Perimeter();
+	double Square() const;
+	double Perimeter() const;
 
 	void Output();
 
@@ -224,15 +206,11 @@ void Rectangle::Initialize(double A, double B)
 	{
 		baseSide = A;
 		sideB = B;
-		P = Perimeter();
-		S = Square();
 	}
 	else
 	{
 		baseSide = 0;
 		sideB = 0;
-		P = 0;
-		S = 0;
 	}
 }
 
@@ -246,16 +224,14 @@ Rectangle::Rectangle(double A, double B)
 	Initialize(A, B);
 }
 
-double Rectangle::Square()
+double Rectangle::Square() const
 {
-	S = baseSide * sideB;
-	return S;
+	return baseSide * sideB;
 }
 
-double Rectangle::Perimeter()
+double Rectangle::Perimeter() const
 {
-	P = baseSide * 2 + sideB * 2;
-	return P;
+	return baseSide * 2 + sideB * 2;
 }
 
 void Rectangle::Output()
@@ -281,8 +257,8 @@ ostream& operator<<(ostream& o, const Rectangle& rt)
 	o << "-Rectangle-" << "\n"
 		<< "Side A: " << rt.baseSide << "\n"
 		<< "Side B: " << rt.sideB << "\n"
-		<< "Perimeter: " << rt.P << "\n"
-		<< "Square: " << rt.S << "\n";
+		<< "Perimeter: " << rt.Perimeter() << "\n"
+		<< "Square: " << rt.Square() << "\n";
 	return o;
 }
 
@@ -295,9 +271,9 @@ public:
 	Circle();
 	Circle(double r);
 
-	double Square();
-	double Perimeter();
-	double Diameter();
+	double Square() const;
+	double Perimeter() const;
+	double Diameter() const;
 
 	void Output();
 
@@ -311,15 +287,11 @@ void Circle::Initialize(double r)
 	{
 		baseSide = r * 2;
 		R = r;
-		P = Perimeter();
-		S = Square();
 	}
 	else
 	{
 		baseSide = 0;
 		R = 0;
-		P = 0;
-		S = 0;
 	}
 }
 
@@ -333,22 +305,19 @@ Circle::Circle(double r)
 	Initialize(r);
 }
 
-double Circle::Square()
+double Circle::Square()  const
 {
-	S = 3.14 * R * R;
-	return S;
+	return 3.14 * R * R;
 }
 
-double Circle::Perimeter()
+double Circle::Perimeter()  const
 {
-	P = 2 * 3.14 * R;
-	return P;
+	return 2 * 3.14 * R;
 }
 
-double Circle::Diameter()
+double Circle::Diameter() const
 {
-	baseSide = R * 2;
-	return baseSide;
+	return R * 2;
 }
 
 void Circle::Output()
@@ -370,9 +339,9 @@ ostream& operator<<(ostream& o, const Circle& cr)
 {
 	o << "-Circle-" << "\n"
 		<< "Radius: " << cr.R << "\n"
-		<< "Diameter: " << cr.baseSide<< "\n"
-		<< "Perimeter: " << cr.P << "\n"
-		<< "Square: " << cr.S << "\n";
+		<< "Diameter: " << cr.Diameter() << "\n"
+		<< "Perimeter: " << cr.Perimeter() << "\n"
+		<< "Square: " << cr.Square() << "\n";
 	return o;
 }
 
